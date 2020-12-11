@@ -20,7 +20,7 @@ public class CacheConfig {
 
     @Bean
     public Caffeine shortLivingCaffeine() {
-        return Caffeine.newBuilder().expireAfterWrite(10, TimeUnit.SECONDS);
+        return Caffeine.newBuilder().expireAfterWrite(1, TimeUnit.SECONDS);
     }
 
     @Bean
@@ -30,6 +30,7 @@ public class CacheConfig {
         final CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
         caffeineCacheManager.setCaffeine(shortLivingCaffeine());
         caffeineCacheManager.setCacheNames(List.of(
+                "randomSynchronized",
                 "randomSynchronized",
                 "randomUnsynchronized"
         ));
